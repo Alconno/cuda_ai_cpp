@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CudaCompile Include="main.cu" />
+    <CudaCompile Include="layer.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="tensor.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="Model.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="kernels.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="weighted_sum_last_dim.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="apply_op.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="mean.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="square.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="sqrt.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="gather.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="apply_mat_op.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="scaled_dot_product_attention.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="gelu.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="softmax.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="cross_entropy.cu">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="tensor_view.cpp">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+    <CudaCompile Include="utility.cpp">
+      <Filter>Source Files\TensorOps</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1bcaf589-4d58-4460-b0f5-b2dbdfb08583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{681be258-ed33-4fb2-bb6d-01cb9763ce67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TensorOps">
+      <UniqueIdentifier>{60f6dc77-0a7e-4f11-895f-6d390d0deeaa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="layer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kernels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="data_type.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
