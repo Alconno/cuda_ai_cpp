@@ -1,3 +1,7 @@
 /x64/
 x64/
 first_model.csv
+cuda_ai.vcxproj
+cuda_ai.vcxproj.filters
+cuda_ai.vcxproj.user
+profile_report.ncu-rep
