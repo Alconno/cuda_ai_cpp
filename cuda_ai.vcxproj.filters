@@ -1,50 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CudaCompile Include="main.cu" />
-    <CudaCompile Include="layer.cu">
+    <CudaCompile Include="main.cpp" />
+    <CudaCompile Include="layer.cpp">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="tensor.cu">
+    <CudaCompile Include="tensor.cpp">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="Model.cu">
+    <CudaCompile Include="Model.cpp">
       <Filter>Source Files</Filter>
     </CudaCompile>
     <CudaCompile Include="kernels.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="weighted_sum_last_dim.cu">
+    <CudaCompile Include="weighted_sum_last_dim.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="apply_op.cu">
+    <CudaCompile Include="apply_op.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="mean.cu">
+    <CudaCompile Include="mean.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="square.cu">
+    <CudaCompile Include="square.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="sqrt.cu">
+    <CudaCompile Include="sqrt.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="gather.cu">
+    <CudaCompile Include="gather.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="apply_mat_op.cu">
+    <CudaCompile Include="apply_mat_op.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="scaled_dot_product_attention.cu">
+    <CudaCompile Include="scaled_dot_product_attention.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="gelu.cu">
+    <CudaCompile Include="gelu.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="softmax.cu">
+    <CudaCompile Include="softmax.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
-    <CudaCompile Include="cross_entropy.cu">
+    <CudaCompile Include="cross_entropy.cpp">
       <Filter>Source Files\TensorOps</Filter>
     </CudaCompile>
     <CudaCompile Include="tensor_view.cpp">

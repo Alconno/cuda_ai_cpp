@@ -80,24 +80,24 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="apply_mat_op.cu" />
-    <CudaCompile Include="apply_op.cu" />
-    <CudaCompile Include="cross_entropy.cu" />
-    <CudaCompile Include="gather.cu" />
-    <CudaCompile Include="gelu.cu" />
-    <CudaCompile Include="main.cu" />
+    <CudaCompile Include="apply_mat_op.cpp" />
+    <CudaCompile Include="apply_op.cpp" />
+    <CudaCompile Include="cross_entropy.cpp" />
+    <CudaCompile Include="gather.cpp" />
+    <CudaCompile Include="gelu.cpp" />
+    <CudaCompile Include="main.cpp" />
     <CudaCompile Include="kernels.cu" />
-    <CudaCompile Include="layer.cu" />
-    <CudaCompile Include="mean.cu" />
-    <CudaCompile Include="Model.cu" />
-    <CudaCompile Include="scaled_dot_product_attention.cu" />
-    <CudaCompile Include="softmax.cu" />
-    <CudaCompile Include="sqrt.cu" />
-    <CudaCompile Include="square.cu" />
-    <CudaCompile Include="tensor.cu" />
+    <CudaCompile Include="layer.cpp" />
+    <CudaCompile Include="mean.cpp" />
+    <CudaCompile Include="Model.cpp" />
+    <CudaCompile Include="scaled_dot_product_attention.cpp" />
+    <CudaCompile Include="softmax.cpp" />
+    <CudaCompile Include="sqrt.cpp" />
+    <CudaCompile Include="square.cpp" />
+    <CudaCompile Include="tensor.cpp" />
     <CudaCompile Include="tensor_view.cpp" />
     <CudaCompile Include="utility.cpp" />
-    <CudaCompile Include="weighted_sum_last_dim.cu" />
+    <CudaCompile Include="weighted_sum_last_dim.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kernels.h" />

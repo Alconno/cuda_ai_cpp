@@ -15,7 +15,7 @@ int main() {
     const int B = 32;         // Batch size
     const int T = 128;         // Sequence length
     const int C = 256;        // Embedding dimension
-    const int vocab = 1024*2*2*2*2;   // Vocabulary size
+    const int vocab = 1024;   // Vocabulary size
     const int n_head = 8;     // Number of attention heads
     const int n_layer = 4;    // Number of transformer blocks
 
