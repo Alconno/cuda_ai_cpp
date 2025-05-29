@@ -108,6 +108,9 @@
   <ItemGroup>
     <ClCompile Include="data_type.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.me" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.8.targets" />

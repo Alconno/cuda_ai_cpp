@@ -171,9 +171,6 @@ void Tensor::scaled_dot_product_attention(std::unordered_map<std::string, Tensor
                 );
             cudaDeviceSynchronize(); CHECK_CUDA(cudaGetLastError());
 
-
-            cudaDeviceSynchronize(); CHECK_CUDA(cudaGetLastError());
-
             //cudaMemcpy(smax.grad.data(), d_grad_smax, smax.grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);
             //cudaMemcpy(this->grad.data(), d_grad_qkv, this->grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);
             //cudaMemcpy(scores.grad.data(), d_grad_scores, scores.grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);

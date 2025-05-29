@@ -88,96 +88,46 @@ public:
     dt* d_grad = nullptr;
     bool constant_data = false; // Data persistence flag
 
-    void initialize_gpu_storage() {
-        int num_elements = product(shape);
-        if (num_elements <= 0) {
-            throw std::runtime_error("Trying to allocate zero or negative-sized tensor on GPU.");
-        }
-
-        CHECK_CUDA(cudaMalloc(&d_data, num_elements * sizeof(dt)));
-        if (requires_grad)
-            CHECK_CUDA(cudaMalloc(&d_grad, num_elements * sizeof(dt)));
-    }
-
-
     // Constructors
     Tensor() {}
 
     Tensor(std::vector<int> shape, dt starting_val, std::string name = "", bool const_data = false, bool requires_grad = true)
         : shape(shape),
+        data(product(shape), starting_val),
+        grad(requires_grad ? product(shape) : 0, 0.0),
         name(name),
         requires_grad(requires_grad),
-        constant_data(const_data) {
-
-        if (global_cuda_enabled) {
-            initialize_gpu_storage();
-
-            // Initialize GPU memory with starting_val
-            std::vector<dt> tmp(product(shape), starting_val);
-            CHECK_CUDA(cudaMemcpy(d_data, tmp.data(), tmp.size() * sizeof(dt), cudaMemcpyHostToDevice));
-
-            if (requires_grad)
-                CHECK_CUDA(cudaMemset(d_grad, 0, tmp.size() * sizeof(dt)));
-        }
-        else {
-            data = std::vector<dt>(product(shape), starting_val);
-            grad = requires_grad ? std::vector<dt>(product(shape), 0.0) : std::vector<dt>{};
-        }
-    }
-
+        constant_data(const_data)
+    {}
 
     Tensor(dt scalar, std::string name = "", bool requires_grad = true)
         : shape({ 1 }),
+        data({ scalar }),
+        grad(requires_grad ? std::vector<dt>(1, 0.0) : std::vector<dt>{}),
         name(name),
-        requires_grad(requires_grad) {
-
-        if (global_cuda_enabled) {
-            CHECK_CUDA(cudaMalloc(&d_data, sizeof(dt)));
-            CHECK_CUDA(cudaMemcpy(d_data, &scalar, sizeof(dt), cudaMemcpyHostToDevice));
-            if (requires_grad) {
-                CHECK_CUDA(cudaMalloc(&d_grad, sizeof(dt)));
-                CHECK_CUDA(cudaMemset(d_grad, 0, sizeof(dt)));
-            }
-        }
-        else {
-            data = { scalar };
-            grad = requires_grad ? std::vector<dt>(1, 0.0) : std::vector<dt>{};
-        }
-    }
-
+        requires_grad(requires_grad)
+    {}
 
     template <typename ShapeT, typename DataT>
     Tensor(std::vector<int>& shape_input, std::vector<dt>&& data_input,
         std::string name = "", bool const_data = false, bool requires_grad = true)
         : shape(std::forward<ShapeT>(shape_input)),
+        data(std::forward<DataT>(data_input)),
+        grad(requires_grad ? std::vector<dt>(product(shape), 0.0) : std::vector<dt>{}),
         name(name),
         requires_grad(requires_grad),
-        constant_data(const_data) {
-
+        constant_data(const_data)
+    {
+        grad = std::vector<dt>(product(shape), 0.0);
         int prod_shape = product(shape);
-        while (data_input.size() < prod_shape)
-            data_input.push_back((dt)0.0);
+        while (data.size() < prod_shape)
+            data.push_back((dt)0.0);
 
-        if (data_input.size() != prod_shape) {
-            std::cout << data_input.size() << std::endl;
+        if (data.size() != prod_shape) {
+            std::cout << data.size() << std::endl;
             throw std::runtime_error("Data size does not match shape product.");
         }
-
-        if (global_cuda_enabled) {
-            CHECK_CUDA(cudaMalloc(&d_data, prod_shape * sizeof(dt)));
-            CHECK_CUDA(cudaMemcpy(d_data, data_input.data(), prod_shape * sizeof(dt), cudaMemcpyHostToDevice));
-
-            if (requires_grad) {
-                CHECK_CUDA(cudaMalloc(&d_grad, prod_shape * sizeof(dt)));
-                CHECK_CUDA(cudaMemset(d_grad, 0, prod_shape * sizeof(dt)));
-            }
-        }
-        else {
-            data = std::forward<DataT>(data_input);
-            grad = requires_grad ? std::vector<dt>(prod_shape, 0.0) : std::vector<dt>{};
-        }
     }
-
 
     ~Tensor() {
         if (d_data || d_grad) {

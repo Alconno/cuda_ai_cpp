@@ -42,9 +42,6 @@ void Tensor::weighted_sum(Tensor& a, Tensor& b) {
             weighted_sum_kernel << <grid, block >> > (d_a, d_b, d_out, B, H, T, J, C, b_rows);
 
             cudaDeviceSynchronize(); CHECK_CUDA(cudaGetLastError());
-
-            // Copy result back to host
-            //cudaMemcpy(data.data(), d_data, data.size() * sizeof(dt), cudaMemcpyDeviceToHost);
         }
         else {
             // CPU dot product forward pass
@@ -131,9 +128,6 @@ void Tensor::weighted_sum(Tensor& a, Tensor& b) {
                 (d_a, d_b, d_a_grad, d_b_grad, d_out_grad, B, H, T, J, C, b.data.size() / C);
 
             cudaDeviceSynchronize(); CHECK_CUDA(cudaGetLastError());
-
-            //cudaMemcpy(a.grad.data(), d_a_grad, a.grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);
-            //cudaMemcpy(b.grad.data(), d_b_grad, b.grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);
         }
         else {
             // CPU dot prod backward pass

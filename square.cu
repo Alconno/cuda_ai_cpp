@@ -22,8 +22,7 @@ void Tensor::square(Tensor& a) {
         cudaDeviceSynchronize();
         CHECK_CUDA(cudaGetLastError());
 
-        // Optional: copy result to host
-        // cudaMemcpy(this->data.data(), d_out_data, this->data.size() * sizeof(dt), cudaMemcpyDeviceToHost);
+
     }
     else {
         // CPU square
@@ -54,8 +53,6 @@ void Tensor::square(Tensor& a) {
                 cudaDeviceSynchronize();
                 CHECK_CUDA(cudaGetLastError());
 
-                // Optional: copy grad to host
-                // cudaMemcpy(a.grad.data(), d_a_grad, a.grad.size() * sizeof(dt), cudaMemcpyDeviceToHost);
                 });
         }
         else {

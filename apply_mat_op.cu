@@ -5,7 +5,7 @@ void Tensor::sum(Tensor& out) {
     out.data.resize({ 1 });
     out.requires_grad = this->requires_grad;
 
-    if (global_cuda_enabled) {
+    if (0) {
         out.alloc_gpu();
 
         dt* d_input = this->d_data;
@@ -15,7 +15,7 @@ void Tensor::sum(Tensor& out) {
         int threads = 512;
         int blocks = (size + threads - 1) / threads;
 
-        // sum_kernel<<<blocks, threads>>>(d_input, d_output, size);
+        //sum_kernel<<<blocks, threads>>>(d_input, d_output, size);
 
         // cudaMemcpy(out.data.data(), d_output, sizeof(dt), cudaMemcpyDeviceToHost);
     }
@@ -31,7 +31,7 @@ void Tensor::sum(Tensor& out) {
     if (this->requires_grad) {
         out.prev.insert(this);
 
-        if (global_cuda_enabled) {
+        if (0) {
             out.backwardFuncs.push_back([this, &out]() {
                 dt* d_grad_input = this->d_grad;
                 dt grad_output = out.grad[0];
@@ -92,7 +92,7 @@ void Tensor::prod(Tensor& out) {
     if (this->requires_grad) {
         out.backwardFuncs.push_back([this, &out]() {
             for (int i = 0; i < this->numel(); ++i) {
-                dt partial = out.data[0] / this->data[i]; // ∂(prod)/∂xᵢ = prod / xᵢ
+                dt partial = out.data[0] / this->data[i];
                 this->grad[i] += out.grad[0] * partial;
             }
             });
@@ -114,7 +114,7 @@ void Tensor::divreduce(Tensor& out) {
                 denom *= this->data[i];
             this->grad[0] += out.grad[0] * (1.0 / denom);
 
-            // ∂out/∂xᵢ for i > 0
+
             for (int i = 1; i < this->numel(); ++i) {
                 this->grad[i] -= out.grad[0] * (out.data[0] / this->data[i]);
             }
