@@ -1,6 +1,6 @@
-# Custom CUDA GPT Transformer
+# Custom CUDA Transformer
 
-This project is a from-scratch implementation of a GPT-style transformer neural network in C++ with CUDA acceleration. It includes a custom autograd system and all necessary tensor operations.
+This project is a from-scratch implementation of a transformer neural network in C++ with CUDA acceleration. It includes a custom autograd system and all necessary tensor operations.
 
 ## Features
 
